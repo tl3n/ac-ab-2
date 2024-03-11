@@ -15,6 +15,7 @@ uint hash(string& key, uint tableSize, uint a) {
     return hashValue;
 }
 
+// Видалення повторень у масиві рядків
 void removeRepetitions(vector<string>& array) {
     vector<string> fix;
 
@@ -46,6 +47,7 @@ hashTable firstLevelHash(vector<string>& array, vector<vector<uint>>& coefficien
 
     return table;
 }
+
 // Другий рівень хешування: для кожної комірки своя вторинна хеш-таблиця зі своєю універсальною хеш-функцією
     void secondLevelHash(hashTable& table, vector<vector<uint>>& coefficients) {
         for (int i = 0; i < TABLE_SIZE; ++i) {
@@ -90,11 +92,10 @@ hashTable perfectHash(vector<string>& array, vector<vector<uint>>& coefficients,
     hashTable table = firstLevelHash(array, coefficients, a);
     secondLevelHash(table, coefficients);
 
-    //printTable(table, coefficients);
-
     return table;
 }
 
+// Пошук ключа у хеш-таблиці
 void findKey(string& key, hashTable& table, vector<vector<uint>>& coefficients, uint a) {
     uint h1 = hash(key, TABLE_SIZE, a);
     uint h2 = hash(key, coefficients[h1][0], coefficients[h1][1]);
@@ -108,36 +109,18 @@ void findKey(string& key, hashTable& table, vector<vector<uint>>& coefficients, 
     }
 }
 
-/*void printTable(hashTable& table, vector<vector<uint>>& coefficients) {
-    for (int i = 0; i < table.size(); ++i) {
-        for (int j = 0; j < 2; ++j)
-            cout << coefficients[i][j] << " ";
-        cout << "\t| ";
-        for (auto& s : table[i]) {
-            if (s.empty()) {
-                cout << "- ";
-            }
-            else {
-                cout << s << " ";
-            }
-        }
-        cout << "\n";
-    }
-}*/
-
+// Вивід хеш-таблиці в консоль
 void printTable(hashTable& table, vector<vector<uint>>& coefficients) {
     // Print header
     cout << "i|\tCoefficients\t  | Values\n";
     cout << "----------------------------------------\n";
 
     for (int i = 0; i < table.size(); ++i) {
-        // Print index and coefficients
         cout << i << "|\t";
         for (int j = 0; j < 2; ++j)
             cout << coefficients[i][j] << " ";
         cout << "\t\t| ";
 
-        // Print values
         for (auto& s : table[i]) {
             if (s.empty()) {
                 cout << "- ";
