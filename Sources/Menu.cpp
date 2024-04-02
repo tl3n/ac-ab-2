@@ -3,7 +3,7 @@
 //
 #include "Menu.h"
 
-void menu() {
+void menuPerfectHashing() {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> distribution(1, 1000);
@@ -24,12 +24,11 @@ void menu() {
     hashTable table = perfectHash(array, coefficients, a);
 
     while (true) {
-        cout << "\nMenu:\n";
-        cout << "1. Print hash table\n";
-        cout << "2. Find key\n";
-        cout << "3. Exit\n";
-        cout << "Enter your choice: ";
-
+        cout << "\nMenu:\n"
+                "1. Print hash table\n"
+                "2. Find key\n"
+                "3. Exit\n"
+                "Enter your choice: ";
         int choice;
         cin >> choice;
 
@@ -50,6 +49,80 @@ void menu() {
                     break;
                 }
                 findKey(key, table, coefficients, a);
+                break;
+            case 3:
+                return;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    }
+}
+
+void menuBinomialHeap() {
+    BinomialHeap heap;
+    heap.insertKey(10.2);
+    heap.insertKey(5.4);
+    heap.insertKey(20.9);
+    heap.insertKey(15.21);
+    heap.insertKey(25.1);
+
+    while (true) {
+        cout << "\nMenu:\n"
+                "1. Print heap\n"
+                "2. Find min\n"
+                "3. Extract min\n"
+                "4. Insert value\n"
+                "5. Exit\n";
+        int choice;
+        cin >> choice;
+
+        Node* node;
+        double key = 0.0;
+        switch (choice) {
+            case 1:
+                heap.print();
+                break;
+            case 2:
+                node = heap.findMin();
+                if (node) {
+                    std::cout << "Min value of the binomial heap is: " << node->key << '\n';
+                }
+                else {
+                    std::cout << "Binomial heap is empty.\n";
+                }
+                break;
+            case 3:
+                heap.extractMin();
+                break;
+            case 4:
+                std::cout << "Enter key to insert: ";
+                std::cin >> key;
+                heap.insertKey(key);
+                break;
+            case 5:
+                return;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    }
+}
+
+void menu() {
+    while (true) {
+        cout << "\nMenu:\n"
+                "1. Perfect hashing\n"
+                "2. Binomial heap\n"
+                "3. Exit\n"
+                "Enter your choice: ";
+        int choice;
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                menuPerfectHashing();
+                break;
+            case 2:
+                menuBinomialHeap();
                 break;
             case 3:
                 return;

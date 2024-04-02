@@ -10,4 +10,6 @@ add_executable(ac_lab_2 main.cpp
         Sources/PerfectHashing.cpp
         Headers/Menu.h
         Sources/Menu.cpp
+        Headers/BinomialHeap.h
+        Sources/BinomialHeap.cpp
 )
