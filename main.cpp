@@ -33,7 +33,7 @@ int main() {
 
     // Deleting a node with a specific key
     std::cout << "Deleting a node with a specific key:" << std::endl;
-    binomialHeap.deleteKey(nodeToDecrease);
+    binomialHeap.deleteKey(nodeToDecrease->sibling->child);
     binomialHeap.print();
     std::cout << std::endl;*/
     return 0;

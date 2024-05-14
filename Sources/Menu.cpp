@@ -107,12 +107,53 @@ void menuBinomialHeap() {
     }
 }
 
+void menuOptimalBST() {
+    float keys[4] = {10, 20, 30, 40};
+    float frequencies[4] = {4, 2, 6, 3};
+
+    int n = 4;
+    BST optimalBST = findOptimalBST(keys, frequencies, n);
+
+    while (true) {
+        cout << "\nMenu:\n"
+                "1. Print BST\n"
+                "2. Find value\n"
+                "3. Exit\n";
+        int choice;
+        cin >> choice;
+
+        NodeBST* node;
+        float x;
+        switch (choice) {
+            case 1:
+                optimalBST.printTree(optimalBST.getRoot(), 0);
+                break;
+            case 2:
+                std::cout << "Enter value: ";
+                std::cin >> x;
+                node = optimalBST.search(x);
+                if (node) {
+                    std::cout << "Value has been found.\n";
+                }
+                else {
+                    std::cout << "Value has not been found.\n";
+                }
+                break;
+            case 3:
+                return;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    }
+}
+
 void menu() {
     while (true) {
         cout << "\nMenu:\n"
                 "1. Perfect hashing\n"
                 "2. Binomial heap\n"
-                "3. Exit\n"
+                "3. Optimal BST\n"
+                "4. Exit\n"
                 "Enter your choice: ";
         int choice;
         cin >> choice;
@@ -125,6 +166,9 @@ void menu() {
                 menuBinomialHeap();
                 break;
             case 3:
+                menuOptimalBST();
+                break;
+            case 4:
                 return;
             default:
                 cout << "Invalid choice. Please try again.\n";

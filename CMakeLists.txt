@@ -12,4 +12,8 @@ add_executable(ac_lab_2 main.cpp
         Sources/Menu.cpp
         Headers/BinomialHeap.h
         Sources/BinomialHeap.cpp
+        Headers/BST.h
+        Sources/BST.cpp
+        Headers/OptimalBSTSearch.h
+        Sources/OptimalBSTSearch.cpp
 )
